@@ -1,0 +1,26 @@
+= Abstract
+
+Linklist[http://CodaSet.Com/Joerg-W-Mittag/Link-List/] is just a 
+simple script to convert a text file with one URI per line into a 
+static HTML page containing links to those URIs.
+
+---
+
+= What
+
+This program converts a text file with one URI per line into a 
+static HTML page containing links to those URIs.
+
+= Installation
+
+	gem install linklist
+
+= Usage
+
+	linklist -i input.txt -o output.html
+
+= License
+
+Linklist is licensed under the {MIT X11 License}[http://CodaSet.Com/Joerg-W-Mittag/Link-List/source/master/blob/LICENSE.rdoc].
+
+:include: LICENSE.rdoc

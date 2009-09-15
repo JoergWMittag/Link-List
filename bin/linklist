@@ -1,0 +1,45 @@
+#!/usr/bin/env ruby
+# vim: fileencoding=UTF-8 ft=ruby syn=ruby ts=2 sw=2 ai eol et si
+
+# Copyright (c) 2009 Jörg W Mittag <mailto:JoergWMittag+Link-List@GoogleMail.Com>
+# This code is licensed under the terms of the MIT License (see LICENSE.rdoc)
+
+require 'optparse'
+require 'linklist'
+
+module Linklist
+  class Main
+    def initialize args
+      @args = args
+      @options = {input: $stdin, output: $stdout}
+      @option_parser = OptionParser.new do |opts|
+        opts.banner = 'Usage: linklist -t <TITLE> -i <INPUT> -o <OUTPUT>'
+        opts.on '-t', '--title [TITLE]', 'Use title instead of "URIs"' do |title|
+          @options[:title] = title
+        end
+        opts.on '-i', '--input [INPUTFILE]', 'Use Filename instead of STDIN' do |file|
+          @options[:input] = open file
+        end
+        opts.on '-o', '--output [OUTPUTFILE]', 'Use Filename instead of STDOUT' do |file|
+          @options[:output] = open file, 'w'
+        end
+      end
+    end
+
+    def run!
+      @option_parser.parse! @args
+      uris = TextParser.new.parse @options[:input].gets nil
+      output = HtmlFormatter.new.format uris, @options[:title]
+      @options[:output].puts output
+    ensure
+      @options[:input].close
+      @options[:output].close
+    end
+
+    def self.run!
+      new(ARGV).run!
+    end
+
+    run!
+  end
+end
