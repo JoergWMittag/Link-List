@@ -5,4 +5,4 @@
 
 require 'rake'
 
-task default: :gem
+task :default => :gem
