@@ -8,11 +8,11 @@ require 'uri'
 
 module Linklist
   class TextParser
-    def parse uris_text
-      uris_text.lines.inject({}) do |uris, uri|
-        uris[CGI.escapeHTML uri.chomp] = URI.escape uri.chomp
+    def parse(uris_text)
+      uris_text.lines.inject({}) { |uris, uri|
+        uris[CGI.escapeHTML(uri.chomp)] = URI.escape(uri.chomp)
         uris
-      end
+      }
     end
   end
 end

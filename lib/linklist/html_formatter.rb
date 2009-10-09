@@ -5,7 +5,7 @@
 
 module Linklist
   class HtmlFormatter
-    def format uris, title
+    def format(uris = {}, title = 'URIs')
       output =  <<-"HERE"
 <!DOCTYPE html>
 <html xmlns='http://www.w3.org/1999/xhtml' xml:lang='de' lang='de'>
