@@ -62,8 +62,13 @@ URIs.
       s.description = DESCRIPTION
       s.add_development_dependency 'jscruggs-metric_fu', '~> 1.1.5'
       s.add_development_dependency 'rdoc', '~> 2.4.3'
-      s.add_development_dependency 'reek', '~> 1.2.0'
-      s.add_development_dependency 'roodi', '~> 2.0.0'
+      s.add_development_dependency 'reek', '~> 1.2.4'
+      s.add_development_dependency 'roodi', '~> 2.0.1'
     end
   end
 end unless defined? Linklist::Projectinfo::GEMSPEC
+
+if __FILE__ == $0
+  Gem::manage_gems
+  Gem::Builder.new(Linklist::Projectinfo::GEMSPEC).build
+end
